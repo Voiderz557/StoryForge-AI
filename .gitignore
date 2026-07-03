@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+
+# VS Code
+.vscode/
+
+# Generated output
+output/
+temp/
+logs/
+stories/
+
+# Generated media
+*.mp3
+*.wav
+*.srt
+
+# Large videos
+clips/*.mp4
+clips/*.mov
+clips/*.avi
+clips/*.mkv
+
+# Environment
+.env
