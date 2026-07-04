@@ -8,7 +8,7 @@ TEMP_DIR = BASE_DIR / "temp"
 STORIES_DIR = BASE_DIR / "stories"
 LOGS_DIR = BASE_DIR / "logs"
 
-OLLAMA_MODEL = "llama3.1:8b"
+OLLAMA_MODEL = "llama3.2:3b"
 OLLAMA_URL = "http://localhost:11434/api/generate"
 
 VIDEO_WIDTH = 1080
