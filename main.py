@@ -1,26 +1,33 @@
+import asyncio
+
+from config import TEMP_DIR
 from src.ai.producer import produce_best_story
-
-
-def print_section(title):
-    print("\n" + "=" * 24)
-    print(title)
-    print("=" * 24 + "\n")
+from src.video.voice_selector import choose_voice
+from src.video.voice import generate_voice
 
 
 def main():
     result = produce_best_story(draft_count=3)
 
-    print_section("DRAFT SCORES")
-    for i, draft in enumerate(result["drafts"], start=1):
-        print(f"Draft {i}: {draft['score'].get('overall', 0)}")
-        print(draft["score"].get("feedback", []))
-        print()
+    story = result["final_story"]
+    score = result["final_score"]
 
-    print_section("FINAL SELECTED STORY")
-    print(result["final_story"])
+    print("\n===== FINAL STORY =====\n")
+    print(story)
 
-    print_section("FINAL SCORE")
-    print(result["final_score"])
+    print("\n===== FINAL SCORE =====\n")
+    print(score)
+
+    print("\nChoosing voice...")
+    voice = choose_voice(story)
+    print("Selected voice:", voice)
+
+    print("\nGenerating voiceover...")
+    audio_path = TEMP_DIR / "voice.mp3"
+    asyncio.run(generate_voice(story, voice, audio_path))
+
+    print("\nVoice saved to:")
+    print(audio_path)
 
 
 if __name__ == "__main__":
